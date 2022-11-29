@@ -32,10 +32,10 @@ class QuestionController extends GetxController
   bool _isAnswered = false;
   bool get isAnswered => _isAnswered;
 
-  late int _correctAns;
+  int _correctAns = 0;
   int get correctAns => _correctAns;
 
-  late int _selectedAns;
+  int _selectedAns = 0;
   int get selectedAns => _selectedAns;
 
   // for more about obs please check documentation
@@ -68,9 +68,9 @@ class QuestionController extends GetxController
   // called just before the Controller is deleted from memory
   @override
   void onClose() {
-    super.onClose();
     _animationController.dispose();
     _pageController.dispose();
+    super.onClose();
   }
 
   void checkAns(Question question, int selectedIndex) {
@@ -104,7 +104,7 @@ class QuestionController extends GetxController
       // Once timer is finish go to the next qn
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      // Get package provide us simple way to naviigate another page
+      // Get package provide us simple way to navigate another page
       Get.to(const ScoreScreen());
     }
   }
